@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Providers from "@/src/providers";
 import { Toaster } from "@/components/ui/toast";
 import { ThemeProvider } from "@/components/provider/ThemeProvider";
+import Header from "@/components/layout/public/Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   enableSystem
   disableTransitionOnChange
 >
+  <Header />
   {children}
 </ThemeProvider>
           <Toaster />
