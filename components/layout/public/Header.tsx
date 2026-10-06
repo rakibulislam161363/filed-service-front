@@ -261,7 +261,7 @@ const UserMenu = () => {
 
         {/* Profile */}
         <DropdownMenuItem>
-          <Link className="flex" href="/profile">
+          <Link className="flex" href="/dashboard/profile">
             <UserRound className="mr-2 size-4" />
             Profile
           </Link>
