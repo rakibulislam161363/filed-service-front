@@ -114,7 +114,7 @@ export default function CustomerDashboardPage() {
           </div>
 
           <Button>
-            <Link href="/dashboard/requests/create">
+            <Link className="flex" href="/dashboard/requests/create">
               <Plus className="mr-2 size-4" />
               Create Request
             </Link>
@@ -169,7 +169,7 @@ export default function CustomerDashboardPage() {
                 </div>
 
                 <Button variant="ghost" size="sm" >
-                  <Link href="/dashboard/requests">
+                  <Link className="flex" href="/dashboard/requests">
                     View All
                     <ArrowRight className="ml-1 size-4" />
                   </Link>
@@ -237,7 +237,7 @@ export default function CustomerDashboardPage() {
                   variant="outline"
                 
                 >
-                  <Link href="/dashboard/requests/create">
+                  <Link className="flex" href="/dashboard/requests/create">
                     <Plus className="mr-2 size-4" />
                     Create Service Request
                   </Link>
@@ -248,7 +248,7 @@ export default function CustomerDashboardPage() {
                   variant="outline"
                  
                 >
-                  <Link href="/dashboard/requests">
+                  <Link className="flex" href="/dashboard/requests">
                     <FileText className="mr-2 size-4" />
                     View My Requests
                   </Link>
@@ -259,7 +259,7 @@ export default function CustomerDashboardPage() {
                   variant="outline"
                 
                 >
-                  <Link href="/dashboard/payments">
+                  <Link className="flex" href="/dashboard/payments">
                     <CheckCircle2 className="mr-2 size-4" />
                     Payment History
                   </Link>
@@ -270,7 +270,7 @@ export default function CustomerDashboardPage() {
                   variant="outline"
                
                 >
-                  <Link href="/dashboard/profile">
+                  <Link className="flex" href="/dashboard/profile">
                     <Wrench className="mr-2 size-4" />
                     Manage Profile
                   </Link>
@@ -292,7 +292,7 @@ export default function CustomerDashboardPage() {
             </div>
 
             <Button>
-              <Link href="/dashboard/requests/create">
+              <Link className="flex" href="/dashboard/requests/create">
                 Request a Service
                 <ArrowRight className="ml-2 size-4" />
               </Link>
