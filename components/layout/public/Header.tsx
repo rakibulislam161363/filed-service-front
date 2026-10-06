@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import {
   Menu,
   Wrench,
@@ -58,15 +59,18 @@ const routes = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+
+  
   const [open, setOpen] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+const [mounted, setMounted] = useState(false);
 
   const { data, isLoading } = useGetMe();
 
   const { mutate: logout, isPending } = useLogout();
 
   const queryClient = useQueryClient();
-
-  const { resolvedTheme, setTheme } = useTheme();
 
   const user = data?.data;
   const role = user?.role;
@@ -136,6 +140,14 @@ export default function Header() {
     });
   };
 
+  useEffect(() => {
+  setMounted(true);
+}, []);
+
+const toggleTheme = () => {
+  setTheme(resolvedTheme === "dark" ? "light" : "dark");
+};
+
   // ------------------------------------
   // Close mobile menu
   // ------------------------------------
@@ -148,30 +160,30 @@ export default function Header() {
   // Theme toggle
   // ------------------------------------
 
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  };
-
   // ------------------------------------
   // Theme button
   // ------------------------------------
 
   const ThemeButton = (
-    <Button
-      variant="ghost"
-      size="icon"
-      aria-label="Toggle color theme"
-      onClick={toggleTheme}
-    >
-      {resolvedTheme === "dark" ? (
-        <Sun className="size-5" />
-      ) : (
-        <Moon className="size-5" />
-      )}
-    </Button>
+   <Button
+  variant="ghost"
+  size="icon"
+  aria-label="Toggle color theme"
+  onClick={toggleTheme}
+>
+  {mounted && (
+    resolvedTheme === "dark" ? (
+      <Sun className="size-5" />
+    ) : (
+      <Moon className="size-5" />
+    )
+  )}
+</Button>
   );
 
-  
+  if (pathname === "/login" || pathname === "/register") {
+    return null;
+  }
 
 // ------------------------------------
 // User dropdown
@@ -531,4 +543,3 @@ const UserMenu = () => {
     </header>
   );
 }
-
