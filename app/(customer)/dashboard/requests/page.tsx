@@ -117,7 +117,7 @@ export default function MyRequestsPage() {
             </p>
           </div>
 
-          <Button asChild>
+          <Button>
             <Link href="/dashboard/requests/create">
               <Plus className="mr-2 size-4" />
               Create Request
@@ -221,7 +221,7 @@ export default function MyRequestsPage() {
                         </p>
                       </div>
 
-                      <Button variant="outline" size="sm" asChild>
+                      <Button variant="outline" size="sm">
                         <Link href={`/dashboard/requests/${request.id}`}>
                           Details
                           <ArrowRight className="ml-2 size-4" />
