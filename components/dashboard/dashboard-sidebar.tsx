@@ -12,18 +12,17 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import Logo from "@/assets/svg/Logo";
-import { UserRole } from "@/types";
-import { adminRoutes, doctorRoutes, patientRoutes } from "@/routes";
-import { SidebarItems } from "@/types/sidebar.type";
+import { UserRole } from "@/src/types";
+import { adminRoutes, doctorRoutes, patientRoutes } from "@/src/routes";
+import { SidebarItems } from "@/src/types/sidebar.type";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const sidebarRoutes: Partial<Record<UserRole, SidebarItems>> = {
-  SUPER_ADMIN: adminRoutes,
+
   ADMIN: adminRoutes,
-  DOCTOR: doctorRoutes,
-  PATIENT: patientRoutes,
+  CUSTOMER: doctorRoutes,
+  TECHNICIAN: patientRoutes,
 };
 
 export function DashboardSidebar({ role }: { role: UserRole }) {
@@ -37,8 +36,7 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
       <SidebarHeader>
         <Link href="/">
           <div className="flex items-center gap-2">
-            <Logo />
-            <span>PH Healthcare</span>
+            <span>Fixit Now</span>
           </div>
         </Link>
       </SidebarHeader>

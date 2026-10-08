@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "./dashboard-sidebar";
 import { ReactNode } from "react";
-import { UserRole } from "@/types";
+import { UserRole } from "@/src/types";
 
 export default function DashboardShell({
   children,

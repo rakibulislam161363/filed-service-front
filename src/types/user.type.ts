@@ -1,4 +1,4 @@
-export type UserRole = "SUPER_ADMIN" | "ADMIN" | "DOCTOR" | "PATIENT";
+export type UserRole = "ADMIN" | "CUSTOMER" | "TECHNICIAN";
 
 export type UserStatus = "ACTIVE" | "BLOCKED" | "DELETED";
 
