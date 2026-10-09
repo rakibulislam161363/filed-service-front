@@ -18,12 +18,12 @@ export function useApplyAsDoctor() {
   });
 }
 
+
 export function useVerifyDoctorAccount() {
   return useMutation({
     mutationFn: verifyDoctorAccount,
   });
 }
-
 export function useGetAllDoctors(params: DoctorParams) {
   return useQuery({
     queryKey: ["doctors", params],

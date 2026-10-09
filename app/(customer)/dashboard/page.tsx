@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 const stats = [
   {
     title: "Total Requests",
-    value: "12",
+    value: "22",
     description: "All service requests",
     icon: FileText,
   },
