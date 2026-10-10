@@ -29,18 +29,18 @@ export default function HomePage() {
               {/* Buttons */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/register"
+                  href="/services"
                   className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                 >
-                  Book a Service
+                  Explore Services
                 </Link>
 
-                <Link
+                {/* <Link
                   href="/services"
                   className="inline-flex h-11 items-center justify-center rounded-md border bg-background px-6 text-sm font-medium transition-colors hover:bg-muted"
                 >
                   Explore Services
-                </Link>
+                </Link> */}
               </div>
 
               {/* Small Stats */}

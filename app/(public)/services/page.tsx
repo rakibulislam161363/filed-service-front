@@ -121,7 +121,7 @@ export default function ServicesPage() {
             service and connect with trusted professionals.
           </p>
 
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          {/* <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button  size="lg">
               <Link className="flex" href="/dashboard/requests/create">
                 Book a Service
@@ -132,7 +132,7 @@ export default function ServicesPage() {
             <Button size="lg" variant="outline">
               <a href="#services">Explore Services</a>
             </Button>
-          </div>
+          </div> */}
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-2">
