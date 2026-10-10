@@ -461,7 +461,7 @@ export default function AdminCategoriesPage() {
                       </div>
 
                       <div className="min-w-0 flex-1">
-                        <h3 className="break-words font-semibold">
+                        <h3 className="wrap-break-word font-semibold">
                           {category.name}
                         </h3>
 

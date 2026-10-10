@@ -1,3 +1,3 @@
 export * from "./auth.hook";
-export * from "./doctor.hook";
+export * from "./service-request.hook";
 export * from "./service.hook"
