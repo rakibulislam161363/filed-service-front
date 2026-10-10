@@ -4,3 +4,4 @@ export * from "./user.type";
 export * from "./api.type";
 export * from "./service.type"
 export * from "./technician"
+export * from "./sidebar.type"

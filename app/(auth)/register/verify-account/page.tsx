@@ -47,7 +47,7 @@ return ( <main className="relative flex min-h-svh items-center justify-center ov
           </div>
         }
       >
-        <VerifyAccountForm mode="patient" />
+        <VerifyAccountForm />
       </Suspense>
 
       <div className="mt-6 border-t pt-5 text-center">
