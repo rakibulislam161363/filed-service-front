@@ -14,16 +14,12 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { Field, FieldDescription, FieldError, FieldLabel } from "../ui/field";
 import { useEffect, useState } from "react";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { useVerifyAccount, useVerifyDoctorAccount } from "@/src/hooks";
+import { useVerifyAccount } from "@/src/hooks";
 import { toast } from "../ui/toast";
 
 const RESEND_COOLDOWN = 120;
 
-export default function VerifyAccountForm({
-  mode = "patient",
-}: {
-  mode: "doctor" | "patient";
-}) {
+export default function VerifyAccountForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -31,10 +27,8 @@ export default function VerifyAccountForm({
   const [isInvalid, setIsInvalid] = useState(false);
   const [resendTimer, setResendTimer] = useState(RESEND_COOLDOWN);
 
-  const { mutate: verifyPatient } = useVerifyAccount();
-  const { mutate: verifyDoctor } = useVerifyDoctorAccount();
-
-  const verify = mode === "doctor" ? verifyDoctor : verifyPatient;
+  // নাম পরিবর্তন করে verifyCustomer করা হয়েছে
+  const { mutate: verifyCustomer } = useVerifyAccount();
 
   const email = searchParams.get("email") || "";
 
@@ -42,19 +36,28 @@ export default function VerifyAccountForm({
     if (!email) {
       router.push("/");
     }
-  }, [email]);
+  }, [email, router]);
 
+  // টাইমার হ্যান্ডেল করার ইফেক্ট
   useEffect(() => {
-    if (resendTimer <= 0) {
-      return;
-    }
+    if (resendTimer <= 0) return;
 
     const timer = setInterval(() => {
       setResendTimer((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [resendTimer]);
+
+  // OTP রিসেন্ড করার ফাংশন
+  const handleResend = () => {
+    setResendTimer(RESEND_COOLDOWN);
+    toast.add({
+      title: "OTP Resent",
+      description: "A new OTP has been sent to your email.",
+      type: "success",
+    });
+  };
 
   const handleOTP = () => {
     if (otp.length !== 6) {
@@ -67,7 +70,8 @@ export default function VerifyAccountForm({
       otp,
     };
 
-    verify(verifyData, {
+    // কাস্টমার ভেরিফিকেশন কল
+    verifyCustomer(verifyData, {
       onSuccess: (res) => {
         if (!res.success) {
           toast.add({
@@ -75,17 +79,6 @@ export default function VerifyAccountForm({
             description: "Something went wrong. Please try again",
             type: "error",
           });
-        }
-
-        if (mode === "doctor") {
-          toast.add({
-            title: "Verification Successful",
-            description:
-              "An admin will approve your account. This may take time. Please check your email in few days",
-            type: "success",
-          });
-          router.push("/");
-
           return;
         }
 
@@ -157,12 +150,16 @@ export default function VerifyAccountForm({
                 errors={[{ message: "Invalid Code. Please try again" }]}
               />
             )}
-            <FieldDescription>Resend in {resendTimer}</FieldDescription>
+            {resendTimer > 0 && (
+              <FieldDescription>Resend in {resendTimer}s</FieldDescription>
+            )}
           </Field>
         </form>
       </CardContent>
-      <CardFooter>
-        <Button disabled={resendTimer > 0}>Resend</Button>
+      <CardFooter className="flex justify-between">
+        <Button type="button" variant="outline" onClick={handleResend} disabled={resendTimer > 0}>
+          Resend
+        </Button>
         <Button type="submit" form="otp-form">
           Submit
         </Button>
